@@ -9,10 +9,24 @@
 		</div>
 	</nav>
 	<div class="container margin-top-50">
-		{{>editor}}
+		<div class="row">
+			<div class="col-md-6">{{>editor}}</div>
+			<div class="col-md-6">{{>preview}}</div>
+		</div>
 	</div>
 </body>
 
 <template name="editor">
-	{{>sharejsCM docid=docid id="editor"}}
+	{{>sharejsCM docid=docid onRender=config id="editor"}}
+</template>
+
+<template name="preview">
+	<!--
+	iframe is used because we want to render the document as it would be rendered
+	inside a html document. Sticking HTML inside a div wouldn't work for specific
+	html tags like <head> <body> etc.
+	-->
+	<iframe id="viewer_iframe">
+
+	</iframe>
 </template>
