@@ -3,9 +3,14 @@
 </head>
 
 <body>
-	<h1>Welcome to TextCircle</h1>
-
-	{{>editor}}
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">TextCircle</a>
+		</div>
+	</nav>
+	<div class="container margin-top-50">
+		{{>editor}}
+	</div>
 </body>
 
 <template name="editor">
