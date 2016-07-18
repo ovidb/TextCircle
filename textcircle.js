@@ -1,10 +1,12 @@
 this.Documents = new Mongo.Collection("documents");
+var myVar = 10;
+
 if (Meteor.isClient){
 
 	Meteor.setInterval(function() {
-			console.log('fireing');
 			Session.set("current_date", new Date());
 	}, 1000);
+
 
 	Template.editor.helpers({
 		docid:function() {
@@ -18,8 +20,11 @@ if (Meteor.isClient){
 		}
 	});
 	Template.date_display.helpers({
-		"current_date": function() {
+		current_date: function() {
 			return Session.get("current_date");
+		},
+		myVar: function() {
+			return myVar;
 		}
 	});
 }
