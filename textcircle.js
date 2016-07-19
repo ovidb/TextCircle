@@ -1,4 +1,5 @@
 this.Documents = new Mongo.Collection("documents");
+EditingUsers = new Mongo.Collection("editingUsers");
 
 if (Meteor.isClient){
 
@@ -16,8 +17,10 @@ if (Meteor.isClient){
 			return function(editor) {
 				editor.on("change", function(cm_editor, info) {
 					console.log(cm_editor.getValue());
-					$("#viewer_iframe").contents()
-						.find("html").html(cm_editor.getValue());
+					$("#viewer_iframe")
+						.contents().find("html")
+						.html(cm_editor.getValue());
+					Meteor.call("addEditingUser");
 				});
 			}
 		},
@@ -31,4 +34,10 @@ if (Meteor.isServer){
 			Documents.insert({title: 'My new document'});
 		}
 	})
+
 }
+Meteor.methods({
+	addEditingUser: function() {
+		EditingUsers.insert({user: "Ovidiu"});
+	}
+});
