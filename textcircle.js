@@ -25,7 +25,25 @@ if (Meteor.isClient){
 			}
 		},
 	});
-}
+	Template.editingUsers.helpers({
+		users: function() {
+			var doc, eUsers, users;
+			doc = Documents.findOne();
+			if(!doc) {return;}//give up
+			eUsers = EditingUsers.findOne({docid:doc._id});
+			if(!eUsers) {return;} //give up
+			//iterate the keys
+			users = new Array();
+			var i = 0;
+			for (var user_id in eUsers.users) {
+				users[i] = fixObjectKeys(eUsers.users[user_id]);
+				i++;
+			}
+			return users;
+
+		}
+	})
+} // end isClient
 
 if (Meteor.isServer){
 	Meteor.startup(function(){
@@ -58,3 +76,12 @@ Meteor.methods({
 		EditingUsers.upsert({_id: eUsers._id},eUsers);
 	}
 });
+
+function fixObjectKeys(obj) {
+	var newObj = {};
+	for (key in obj) {
+		var key2 = key.replace("-","");
+		newObj[key2] = obj[key];
+	}
+	return newObj;
+}

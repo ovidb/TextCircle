@@ -11,11 +11,20 @@
 	</nav>
 	<div class="container margin-top-50">
 		<div class="row">
+			<div class="col-md-12">{{>editingUsers}}</div>
+		</div>
+		<div class="row">
 			<div class="col-md-6">{{>editor}}</div>
 			<div class="col-md-6">{{>preview}}</div>
 		</div>
 	</div>
 </body>
+
+<template name="editingUsers">
+	{{#each users}}
+		{{firstname}}
+	{{/each}}
+</template>
 
 <template name="editor">
 	{{>sharejsCM docid=docid onRender=config id="editor"}}
