@@ -16,7 +16,11 @@ if (Meteor.isClient){
 			//get access to the editor
 			return function(editor) {
 				editor.on("change", function(cm_editor, info) {
-					console.log(cm_editor.getValue());
+					//show line number
+					editor.setOption("lineNumbers", true);
+					//set theme
+					editor.setOption("theme", "cobalt")
+					//change event handler
 					$("#viewer_iframe")
 						.contents().find("html")
 						.html(cm_editor.getValue());
