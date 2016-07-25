@@ -5,12 +5,8 @@ if (Meteor.isClient){
 
 	Template.editor.helpers({
 		docid:function() {
-			var doc = Documents.findOne();
-			if (doc) {
-				return doc._id;
-			} else {
-				return undefined;
-			}
+			setCurrentDocument();
+			return Session.get("docid");
 		},
 		config:function() {
 			//get access to the editor
@@ -110,6 +106,15 @@ Meteor.methods({
 	}
 });
 
+function setCurrentDocument() {
+	var doc;
+	if(!Session.get("docid")) {//no doc id set yet
+		doc = Documents.findOne();
+		if(doc) {
+			Session.set("docid", doc._id);
+		}
+	}
+}
 function fixObjectKeys(obj) {
 	var newObj = {};
 	for (key in obj) {
