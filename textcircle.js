@@ -42,7 +42,12 @@ if (Meteor.isClient){
 			return users;
 
 		}
-	})
+	});
+	Template.navbar.helpers({
+		documents:function() {
+			return Documents.find({});
+		}
+	});
 
 	//////////////
 	// EVENTS
