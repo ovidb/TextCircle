@@ -6,6 +6,9 @@
 	{{>navbar}}
 	<div class="container margin-top-50">
 		<div class="row">
+			<div class="col-md-12">{{>docMeta}}</div>
+		</div>
+		<div class="row">
 			<div class="col-md-12">{{>editingUsers}}</div>
 		</div>
 		<div class="row">
@@ -20,6 +23,12 @@
 	{{#each users}}
 		<span class="label label-success">{{firstname}}</span>
 	{{/each}}
+</template>
+
+<template name="docMeta">
+	{{#with document}}
+	<span class="h1">{{> editableText collection="documents" field="title"}}</span>
+	{{/with}}
 </template>
 
 <template name="editor">

@@ -48,6 +48,22 @@ if (Meteor.isClient){
 			return Documents.find({});
 		}
 	});
+	Template.docMeta.helpers({
+		document:function() {
+			return Documents.findOne({_id:Session.get("docid")});
+		}
+	});
+	Template.editableText.helpers({
+		userCanEdit: function(doc, Collection) {
+			//ca edit if the current doc is owned by me.
+			doc = Documents.findOne({_id:Session.get("docid"), owner: Meteor.userId()});
+			if(doc) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	});
 
 	//////////////
 	// EVENTS
