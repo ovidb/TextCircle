@@ -3,12 +3,8 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="#">TextCircle</a>
-			<p class="navbar-text navbar-right">{{> loginButtons align="right"}}</p>
-		</div>
-	</nav>
+	{{>navbar}}
+	
 	<div class="container margin-top-50">
 		<div class="row">
 			<div class="col-md-12">{{>editingUsers}}</div>
@@ -21,7 +17,7 @@
 </body>
 
 <template name="editingUsers">
-	Editors: 
+	Editors:
 	{{#each users}}
 		<span class="label label-success">{{firstname}}</span>
 	{{/each}}
@@ -30,7 +26,14 @@
 <template name="editor">
 	{{>sharejsCM docid=docid onRender=config id="editor"}}
 </template>
-
+<template name="navbar">
+	<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="#">TextCircle</a>
+		<p class="navbar-text navbar-right">{{> loginButtons align="right"}}</p>
+	</div>
+</nav>
+</template>
 <template name="preview">
 	<!--
 	iframe is used because we want to render the document as it would be rendered
