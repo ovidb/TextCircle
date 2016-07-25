@@ -55,7 +55,11 @@ if (Meteor.isClient){
 				alert("You need to login first!");
 			} else {
 				// user logged in, inserting docs
-				Meteor.call("addDoc");
+				Meteor.call("addDoc", function(err, res) {
+					if(!err) {// all good
+						Session.set("docid", res);
+					}
+				});
 			}
 		}
 	})
@@ -81,7 +85,8 @@ Meteor.methods({
 		} else {
 			doc = {owner: this.userId, createdOn: new Date(),
 						 title: "my new doc"};
-			Documents.insert(doc);
+			var id = Documents.insert(doc);
+			return id;
 		}
 	},
 	addEditingUser: function() {
