@@ -53,6 +53,10 @@ if (Meteor.isClient){
 	// EVENTS
 	/////////////
 	Template.navbar.events({
+		"click .js-load-doc": function(event) {
+			console.log(this);
+			Session.set("docid", this._id);
+		},
 		"click .js-add-doc": function(event) {
 			event.preventDefault();
 			console.log("Add a new doc");
