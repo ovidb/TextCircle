@@ -1,4 +1,12 @@
 Meteor.methods({
+	addComment:function(comment) {
+		console.log("addComment method running");
+		if(this.userId) {
+			comment.createdOn = new Date();
+			comment.userId = Meteor.userId;
+			return Comments.insert(comment);
+		}
+	},
 	updateDocExceprt:function(docid, excerpt) {
 		var doc = Documents.findOne({_id:docid,$or:[{owner:Meteor.userId},{isPrivate:{$ne:true}}]});
 		if (doc && (doc.excerpt != excerpt)) {

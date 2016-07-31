@@ -10,7 +10,26 @@
       <div class="col-md-6">{{>editor}}</div>
       <div class="col-md-6">{{>preview}}</div>
     </div>
+    {{> insertCommentForm}}
   </div>
+</template>
+
+<template name="insertCommentForm">
+    {{#autoForm collection="Comments" id="insertCommentForm" type="method" meteormethod="addComment"}}
+    <fieldset>
+      <legend>Comment</legend>
+      {{> afQuickField name='title'}}
+      {{> afQuickField name='body' rows=6 value="Write your comment here"}}
+      {{> afQuickField name='docid' value=docid type="hidden"}}
+      {{> afQuickField name='owner' value=owner type="hidden"}}
+
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</template>
+
+<template name="insertCommentForm2">
+  {{> quickForm collection="Comments" id="insertCommentForm" type="method" meteormethod="addComment"}}
 </template>
 
 <template name="editingUsers">

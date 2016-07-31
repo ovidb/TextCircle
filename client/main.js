@@ -16,6 +16,11 @@ Router.route('/documents/:_id', function() {
   this.render("docItem", {to:"main"});
 });
 
+Template.insertCommentForm.helpers({
+  docid:function() { return Session.get("docid");},
+  owner:function() { return Meteor.userId;}
+});
+
 Template.docList.helpers({
   documents:function() {
     return Documents.find();
