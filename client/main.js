@@ -1,6 +1,12 @@
 Meteor.subscribe("documents");
 Meteor.subscribe("editingUsers");
 
+Template.docList.helpers({
+  documents:function() {
+    return Documents.find();
+  }
+});
+
 Template.editor.helpers({
   docid:function() {
     setCurrentDocument();
