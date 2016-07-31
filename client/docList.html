@@ -1,7 +1,22 @@
 <template name="docList">
   <div class="container margin-top-50">
-  {{#each documents}}
-    <a href="/documents/{{_id}}">{{title}}</a>
-  {{/each}}
+    <div class="row">
+      {{#each documents}}
+        <div class="col-md-3 col-xs-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{title}}</h3>
+            </div>
+            <div class="panel-body">
+              {{excerpt}}
+              <a href="/documents/{{_id}}" class="btn btn-default">
+              Edit</a>
+              <a href="" class="btn btn-primary">
+              Share</a>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </template>
