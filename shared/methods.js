@@ -18,9 +18,9 @@ Meteor.methods({
 			return id;
 		}
 	},
-	addEditingUser: function() {
+	addEditingUser: function(docid) {
 		var doc, user, eUsers;
-		doc = Documents.findOne();
+		doc = Documents.findOne({_id:docid});
 		if(!doc) {return;}
 		if(!this.userId) {return;}
 		//we should have a doc and a user here
