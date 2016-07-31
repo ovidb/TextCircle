@@ -1,4 +1,11 @@
 Meteor.methods({
+	updateDocExceprt:function(docid, excerpt) {
+		var doc = Documents.findOne({_id:docid,$or:[{owner:Meteor.userId},{isPrivate:{$ne:true}}]});
+		if (doc && (doc.excerpt != excerpt)) {
+			doc.excerpt = excerpt;
+			Documents.upsert({_id:doc._id}, doc);
+		}
+	},
 	updateDocPrivacy:function(doc) {
 		var realDoc = Documents.findOne({_id:doc._id, owner:this.userId});
 		if (realDoc) {

@@ -36,10 +36,16 @@ Template.editor.helpers({
         //set theme
         editor.setOption("theme", "cobalt")
         //change event handler
+        //get current value from editor
+        var editorValue = cm_editor.getValue();
+        //get excerpt from editor value
+        var excerpt = editorValue.substring(1,250);
+
         $("#viewer_iframe")
           .contents().find("html")
-          .html(cm_editor.getValue());
+          .html(editorValue);
         Meteor.call("addEditingUser", Session.get("docid"));
+        Meteor.call("updateDocExceprt", Session.get("docid"), excerpt);
       });
     }
   },
