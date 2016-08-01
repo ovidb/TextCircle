@@ -16,3 +16,6 @@ Meteor.publish("documents", function() {
 Meteor.publish("editingUsers", function() {
 	return EditingUsers.find();
 });
+Meteor.publish("comments", function() {
+	return Comments.find();
+});

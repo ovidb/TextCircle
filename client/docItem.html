@@ -10,8 +10,19 @@
       <div class="col-md-6">{{>editor}}</div>
       <div class="col-md-6">{{>preview}}</div>
     </div>
+    {{> commentList}}
     {{> insertCommentForm}}
   </div>
+</template>
+
+<template name="commentList">
+  <ul>
+    {{#each comments}}
+    <li>{{title}}
+      <p>{{body}}</p>
+    </li>
+    {{/each}}
+  </ul>
 </template>
 
 <template name="insertCommentForm">
@@ -21,7 +32,6 @@
       {{> afQuickField name='title'}}
       {{> afQuickField name='body' rows=6 value="Write your comment here"}}
       {{> afQuickField name='docid' value=docid type="hidden"}}
-      {{> afQuickField name='owner' value=owner type="hidden"}}
 
     </fieldset>
     <button type="submit" class="btn btn-primary">Insert</button>

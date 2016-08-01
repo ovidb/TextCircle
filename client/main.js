@@ -1,5 +1,6 @@
 Meteor.subscribe("documents");
 Meteor.subscribe("editingUsers");
+Meteor.subscribe("comments");
 
 Router.configure({
   layoutTemplate: 'ApplicationLayout'
@@ -14,6 +15,12 @@ Router.route('/documents/:_id', function() {
   Session.set("docid", this.params._id);
   this.render("navbar", {to:"header"});
   this.render("docItem", {to:"main"});
+});
+
+Template.commentList.helpers({
+  comments: function() {
+    return Comments.find({docid: Session.get("docid")});
+  }
 });
 
 Template.insertCommentForm.helpers({
